@@ -1,0 +1,7 @@
+@media only screen and (min-width: 1261px) {
+	#toast-container {
+		min-width: 2%;
+		top: 50%;
+		right: 50%;
+	}
+}
