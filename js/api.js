@@ -72,7 +72,7 @@ function setRonaldoData(data) {
   </div>
 		 `;
 	document.querySelector('.about-content').innerHTML = about;
-	console.log('asqwe');
+	console.log('asq123');
 }
 
 function getRonaldoData() {

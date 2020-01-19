@@ -30,25 +30,12 @@ workbox.routing.registerRoute(
 	})
 );
 
-self.addEventListener('fetch', function(event) {
-	var base_url = 'https://api.football-data.org/';
-	if (event.request.url.indexOf(base_url) > -1) {
-		event.respondWith(
-			caches.open(CACHE_NAME).then(function(cache) {
-				return fetch(event.request).then(function(response) {
-					cache.put(event.request.url, response.clone());
-					return response;
-				});
-			})
-		);
-	} else {
-		event.respondWith(
-			caches.match(event.request).then(function(response) {
-				return response || fetch(event.request);
-			})
-		);
-	}
-});
+workbox.routing.registerRoute(
+	/^https:\/\/api\.football-data\.org/,
+	workbox.strategies.staleWhileRevalidate({
+		cacheName: 'api-football'
+	})
+);
 
 self.addEventListener('activate', function(event) {
 	event.waitUntil(
