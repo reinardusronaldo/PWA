@@ -37,21 +37,6 @@ workbox.routing.registerRoute(
 	})
 );
 
-self.addEventListener('activate', function(event) {
-	event.waitUntil(
-		caches.keys().then(function(cacheNames) {
-			return Promise.all(
-				cacheNames.map(function(cacheName) {
-					if (cacheName != CACHE_NAME) {
-						console.log('ServiceWorker: cache ' + cacheName + ' dihapus');
-						return caches.delete(cacheName);
-					}
-				})
-			);
-		})
-	);
-});
-
 self.addEventListener('push', function(event) {
 	var body;
 	if (event.data) {
